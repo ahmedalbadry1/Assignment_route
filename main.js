@@ -540,35 +540,35 @@
 
 // 5- 
 
-const http = require("node:http");
-const fs = require("node:fs");
-const server = http.createServer((req,res)=>
-{
+// const http = require("node:http");
+// const fs = require("node:fs");
+// const server = http.createServer((req,res)=>
+// {
 
-  if(req.method=="GET" && req.url.startsWith("/user/"))
-  {
-    const targetId = req.url.split("/")[2];
-    let users = JSON.parse(fs.readFileSync("./users.json", "utf-8"))
-    if(!targetId || !users[targetId])
-    {
-      res.writeHead(404);
-        res.end(JSON.stringify({message :"user not found"}))
+//   if(req.method=="GET" && req.url.startsWith("/user/"))
+//   {
+//     const targetId = req.url.split("/")[2];
+//     let users = JSON.parse(fs.readFileSync("./users.json", "utf-8"))
+//     if(!targetId || !users[targetId])
+//     {
+//       res.writeHead(404);
+//         res.end(JSON.stringify({message :"user not found"}))
 
-    }
-    res.writeHead(201)
-    res.end(JSON.stringify(users[targetId], null, 2));
-  }
+//     }
+//     res.writeHead(201)
+//     res.end(JSON.stringify(users[targetId], null, 2));
+//   }
 
-  else
-    {
+//   else
+//     {
     
-      res.writeHead(404);
-        res.end(JSON.stringify({massage :"wrong request"}))
+//       res.writeHead(404);
+//         res.end(JSON.stringify({massage :"wrong request"}))
 
-  }
+//   }
 
-})
+// })
 
-server.listen(3004,()=>{
-console.log("connected on port 3004");
-})
+// server.listen(3004,()=>{
+// console.log("connected on port 3004");
+// })

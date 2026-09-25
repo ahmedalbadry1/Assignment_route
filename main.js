@@ -263,39 +263,39 @@
 
 //6-
 
-const express = require("express")
-const fs = require("fs")
+// const express = require("express")
+// const fs = require("fs")
 
-const port = 3006
-const app = express()
+// const port = 3006
+// const app = express()
 
-app.use(express.json())
+// app.use(express.json())
 
-app.get("/user/filter",(req,res,next)=>{
+// app.get("/user/filter",(req,res,next)=>{
 
-    const {minAge} = req.query
-    const users = JSON.parse(fs.readFileSync("./users.json","utf-8"))
-    const usersArray = Object.values(users).filter((user)=> user.age >=minAge)
+//     const {minAge} = req.query
+//     const users = JSON.parse(fs.readFileSync("./users.json","utf-8"))
+//     const usersArray = Object.values(users).filter((user)=> user.age >=minAge)
     
-    if(usersArray.length===0)
-    {
-        return res.status(404).json({massage:"not found"})
-    }
+//     if(usersArray.length===0)
+//     {
+//         return res.status(404).json({massage:"not found"})
+//     }
 
-    return res.status(200).json(usersArray)
+//     return res.status(200).json(usersArray)
     
-})
+// })
 
 
-app.use((err,req,res,next)=>{
-    console.log(err)
-    return res.status(500).json({massage:"un expected eror"})
-})
+// app.use((err,req,res,next)=>{
+//     console.log(err)
+//     return res.status(500).json({massage:"un expected eror"})
+// })
 
-app.listen(port,()=>
-{
-    console.log(`connected on port ${port}`)
-})
+// app.listen(port,()=>
+// {
+//     console.log(`connected on port ${port}`)
+// })
 
 
 // =================================================================================================================================================

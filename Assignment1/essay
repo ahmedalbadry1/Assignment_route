@@ -1,0 +1,18 @@
+1-forEach: runs a function on every array element.
+for...of: loops through values and gives more control, like break and continue.
+
+
+2-hosting is that the combiler see the variabuls before running the code 
+ console.log(y); // ReferenceError: Cannot access 'y' before initialization
+ let y = 10;
+but it actualy see var y
+and tmz is the period between calling the var and intializing it
+
+3-== compare the values === compare values and data type(see if they are identical in every thing)
+
+4-the are a way to handel erors without crashing the code so we writes the code inslde the try(){"code"} then use the catch to work if any eror happen in the whole code; 
+
+5-Type Conversion: you manually change a data type.
+Number("123")
+Type Coercion: JavaScript automatically changes the data type.
+"5" + 2 // "52"

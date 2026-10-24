@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "mongodb": "^7.7.0"
+  },
+  "name": "mongodb",
+  "version": "1.0.0",
+  "description": "Assignment 7 - Express.js and MongoDB",
+  "main": "src/main.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/main.js",
+    "start:dev": "node --watch src/main.js"
+   
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}

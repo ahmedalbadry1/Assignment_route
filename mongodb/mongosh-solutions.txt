@@ -1,0 +1,121 @@
+1- db.createCollection("books", {
+    validator: {
+        title: {
+            $type: "string",
+            $exists: true,
+            $nin: [null, ""]
+        }
+    }
+});
+
+2- db.authors.insertOne({
+    name: "Author1",
+    nationality: "British"
+});
+
+3-db.createCollection("logs", {
+    capped: true,
+    size: 1024 * 1024
+});
+
+4-db.books.createIndex({title:1})
+
+5-db.books.insertOne({
+    title: "Book1",
+    author: "A1",
+    year: 1937,
+    genres: ["Fantasy", "Adventure"]
+});
+
+6-db.books.insertMany([
+    {
+        title: "Future",
+        author: "George Orwell",
+        year: 2020,
+        genres: ["Science Fiction"]
+    },
+    {
+        title: "The Hobbit",
+        author: "J.R.R. Tolkien",
+        year: 1985,
+        genres: ["Fantasy", "Adventure"]
+    },
+    {
+        title: "The Road",
+        author: "Cormac McCarthy",
+        year: 2006,
+        genres: ["Fiction", "Drama"]
+    }
+]);
+
+
+7-db.logs.insertOne({
+    book_id: ObjectId("6adceaa5f4e7469f458a3389"),
+    action: "created",
+    timestamp: new Date()
+});
+
+8-db.books.updateOne({title:"Future"},{$set:{year:2022}})
+
+9-db.books.findOne({title:"Book1"})
+
+10-db.books.find({
+    year: { $gte: 1990, $lte: 2010 }
+});
+
+11-db.books.find({genres:"Science Fiction"})
+
+12-db.books.aggregate([
+    { $sort: { year: -1 } },
+    { $skip: 2 },
+    { $limit: 3 }
+]);
+
+13-db.books.find({
+    year: { $type: "int" }
+});
+
+14-db.books.find({
+    genres: { $nin: ["Horror", "Science Fiction"] }
+});
+
+15-db.books.deleteMany({year:{$lt:2000}})
+
+16-db.books.aggregate([
+    { $match: { year: { $gt: 2000 } } },
+    { $sort: { year: -1 } }
+]);
+
+17-db.books.aggregate([
+    { $match: { year: { $gt: 2000 } } },
+   {
+    $project: {
+        title: 1,
+        author: 1,
+        year: 1,
+        _id: 0
+    }
+}
+]);
+
+18-db.books.aggregate([
+    { $unwind: "$genres" },
+    { $project: { _id: 0, title: 1, genres: 1 } }
+]);
+
+19-db.logs.aggregate([
+  {$lookup:{
+    from:"books",
+    localField:"book_id",
+    foreignField: "_id",
+                as: "book_details"
+  }},
+  {$project:{
+    _id:0,
+    action:1,
+    "book_details.title": 1,
+                "book_details.author": 1,
+                "book_details.year": 1
+    
+  }}
+]);

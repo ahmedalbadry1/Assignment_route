@@ -1,0 +1,35 @@
+import mongoose from "mongoose";
+
+let userSchema = new mongoose.Schema({
+
+    name:{
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+         match: [/@/,"invalid email address"]
+    },
+     password: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength : [8,"Password must be at least 8 characters"]
+    },
+    phone: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    age: {
+        type: Number,
+        min: 18,
+        max: 60,
+    },
+
+},{optimisticConcurrency: true,})
+
+export let userModel = mongoose.model("User",userSchema)

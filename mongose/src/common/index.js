@@ -1,0 +1,1 @@
+export {errorHandler} from "./middleware/Index.js"
